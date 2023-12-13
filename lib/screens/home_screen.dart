@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:anim_search_app_bar/anim_search_app_bar.dart';
 import 'package:justi5/screens/home_view_screens/homeview.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:justi5/screens/home_view_screens/mail_view.dart';
+import 'package:justi5/screens/home_view_screens/profile_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -61,12 +63,31 @@ class _HomeScreenState extends State<HomeScreen> {
               hintText: 'Search',
               cancelButtonTextStyle: const TextStyle(color: Colors.green),
             ),
-            const SingleChildScrollView(
-              child: HomeView(),
+            SingleChildScrollView(
+              child: widgetmaker(),
             ),
           ],
         ),
       ),
     );
+  }
+  Widget widgetmaker()
+  {
+    if(_currentIndex==0)
+      {
+        return const HomeView();
+      }
+    else if (_currentIndex == 1)
+      {
+        return const MessageView();
+      }
+    else if (_currentIndex == 4)
+    {
+      return const ProfilePage();
+    }
+    else
+      {
+        return const HomeView();
+      }
   }
 }

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:justi5/constants/big_box.dart';
-import 'package:justi5/constants/card_view.dart';
-import 'package:justi5/screens/card_click_screen.dart';
-import 'package:justi5/home_page_horizontal_scroll_list_data/home_page_horizontal_scroll_list_data.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -14,50 +11,47 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return  Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 20).copyWith(bottom: 0),
-          child: const Text("Explore" , style: TextStyle(fontSize: 20),),
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child:Row(
-            children: [
-              GestureDetector(
-
-                  child: const CardView(
-                    categories: 'Attorneys',
-                    description: 'Your Attorney friends for you',
-                    heading: "Law and Order",
-                    imageUrl: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGF3JTIwYW5kJTIwb3JkZXJ8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
-                  ),
-                onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CardClick()));
-                },
+        const SizedBox(height: 40,),
+        Stack(children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                alignment: Alignment.topRight,
+                height: 180,
+                width: 360,
+                decoration:
+                const BoxDecoration(color: Color.fromRGBO(245, 114, 164, 1.0)),
+                child:  Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+                      child: Text("Lets Learn \nMore", style:GoogleFonts.lora(fontSize: 27,color: Colors.white),),
+                    ),
+                    GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 10, 10),
+                        child: Text("Get started", style:GoogleFonts.workSans(fontSize: 20,color: Colors.white),),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              Row(children: cardList,),
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: FloatingActionButton(onPressed: (){}, child: const Icon(Icons.add),),
-              ),
-
-            ],
+            ),
           ),
-        ),
-        const BigBox(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20 , vertical: 20).copyWith(bottom: 0),
-          child: const Text("Recently Viewed And More" , style: TextStyle(fontSize: 20),),
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child:Row(
-            children: cardList
+          Transform(
+            transform: Matrix4.translationValues(-10, -30.0, 0.0),
+            child: Image.asset(
+              'assets/girl.png',
+              scale: 1.2,
+            ),
           ),
-        ),
-        SizedBox(height: 100,)
+        ]),
       ],
     );
   }
